@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryder Cup - Friends Edition</title>
+    <style>
+        :root {
+            --ryder-blue: #1e3a8a;
+            --ryder-gold: #fbbf24;
+            --grass-green: #166534;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        /* Hero Section avec l'image du club */
+        header {
+            /* CHANGE L'IMAGE DU CLUB ICI */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            border-bottom: 5px solid var(--ryder-gold);
+            padding-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* Compte à rebours et Infos */
+        .info-bar {
+            background-color: var(--ryder-blue);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .info-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--ryder-gold);
+        }
+
+        /* Section Inscription */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .format-details {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .format-details h2 {
+            color: var(--grass-green);
+        }
+
+        /* Formulaire */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select {
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--ryder-blue);
+            outline: none;
+        }
+
+        button {
+            background-color: var(--ryder-gold);
+            color: var(--ryder-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background-color: #f59e0b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            header { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ryder Cup 2026</h1>
+        <p class="subtitle">Team Europe vs Team USA</p>
+        <p style="margin-top:10px; font-style:italic;">2 Équipes • 20 Joueurs • 5 Parcours • 1 Trophée</p>
+    </header>
+
+    <div class="info-bar">
+        <div class="info-item">
+            <div class="info-label">Date</div>
+            <div class="info-value" id="event-date">Vendredi 27 Mars 2026</div>
+        </div>
+        <div class="info-item">
+            <div class="info-label">Premier Départ</div>
+            <div class="info-value">13:00</div>
+        </div>
+        <div class="info-item">
+            <div class="info-label">Lieu</div>
+            <div class="info-value">Golf de Rigenée</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="format-details">
+            <h2>Inscris-toi à la compétition</h2>
+            <p>Nous avons besoin de 20 pro du Golf pour cette bataille épique.</p>
+            <p><strong>Format :</strong> 5 départs de 4 balles en scramble.</p>
+        </div>
+
+        <form id="registrationForm" action="https://formspree.io/f/manvrlep" method="POST">
+            <label for="name">Nom & Prénom</label>
+            <input type="text" id="name" name="name" placeholder="Tiger Woods" required>
+
+            <label for="handicap">Index / Handicap (Approximatif)</label>
+            <input type="number" id="handicap" name="handicap" placeholder="18.5" step="0.1" required>
+
+            <label for="team-pref">Préférence d'équipe (Optionnel)</label>
+            <select id="team-pref" name="team_preference">
+                <option value="team-EU">Team Europe (Les Stratèges)</option>
+                <option value="team-USA">Team USA (Les Bombardiers)</option>
+            </select>
+
+            <button type="submit">Valider mon inscription</button>
+        </form>
+        
+        <div id="success-message" style="display:none; text-align:center; color:green; margin-top:20px;">
+            <h3>Bien reçu ! Prépare tes clubs ⛳️</h3>
+        </div>
+    </div>
+
+    <footer>
+        Organisé par le Comité Ryder Cup des Amis.
+    </footer>
+
+    <script>
+        // Petit script pour gérer l'envoi visuel (si tu n'as pas encore de backend)
+        const form = document.getElementById('registrationForm');
+        const successMsg = document.getElementById('success-message');
+
+        // Si tu n'utilises pas Formspree, décommente ceci pour simuler l'envoi
+        /*
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+        });
+        */
+    </script>
+
+</body>
+</html>
